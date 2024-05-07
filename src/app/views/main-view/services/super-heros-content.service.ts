@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import superHerosMock from '../../../../assets/mocks/superheros-data.json';
+import { IntHero } from '../components/super-hero/schemas/superhero.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SuperHerosContentService {
-  private superHeroes: BehaviorSubject<any[]> = new BehaviorSubject<any[]>(superHerosMock);
+  private superHeroes: BehaviorSubject<any[]> = new BehaviorSubject<IntHero[]>(superHerosMock);
   public superHeroes$: Observable<any[]> = this.superHeroes.asObservable();
 
   /* CREATE SUPERHERO */
@@ -21,22 +22,22 @@ export class SuperHerosContentService {
   }
 
   /* GET SUPER HERO BY ID */
-  getSuperHeroById(id: number): any {
-    return this.superHeroes.value.find((hero) => hero.id === id);
+  getSuperHeroById(id: string): IntHero {
+    return this.superHeroes.value.find((hero: IntHero) => hero.id === id);
   }
 
   /* FILTER SUPERHEROES BY NAME */
   filterSuperHeroes(superhero: string): any {
-    return this.superHeroes.value.filter((hero) =>
+    return this.superHeroes.value.filter((hero: IntHero) =>
       hero.superhero.toLowerCase().includes(superhero.toLowerCase())
     );
   }
 
   /* UPDATE SUPERHERO */
-  updateSuperHero(id: number, newData: any): void {
+  updateSuperHero(newSuperHero: IntHero): void {
     const updatedHeroes = this.superHeroes.value.map((hero) => {
-      if (hero.id === id) {
-        return { ...hero, ...newData };
+      if (hero.id === newSuperHero.id) {
+        return { ...hero, ...newSuperHero };
       }
       return hero;
     });
@@ -44,7 +45,7 @@ export class SuperHerosContentService {
   }
 
   /* DELETE SUPERHERO */
-  deleteSuperHero(id: number): void {
+  deleteSuperHero(id: string): void {
     const updatedHeroes = this.superHeroes.value.filter((hero) => hero.id !== id);
     this.superHeroes.next(updatedHeroes);
   }

@@ -3,19 +3,19 @@
     "id": "1",
     "superhero": "Spider-Man",
     "publisher": "Marvel",
-    "image": "https://example.com/spiderman.jpg"
+    "image": ""
   },
   {
     "id": "2",
     "superhero": "Batman",
     "publisher": "DC Comics",
-    "image": "https://example.com/batman.jpg"
+    "image": ""
   },
   {
     "id": "3",
     "superhero": "Superman",
     "publisher": "DC Comics",
-    "image": "https://example.com/superman.jpg"
+    "image": ""
   },
   {
     "id": "4",
