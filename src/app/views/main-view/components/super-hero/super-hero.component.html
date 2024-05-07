@@ -17,7 +17,7 @@
     <form [formGroup]="heroForm" (ngSubmit)="onAddHero()">
       <mat-form-field appearance="fill">
         <mat-label>Superhero</mat-label>
-        <input matInput formControlName="superhero" required>
+        <input appUpperCase matInput formControlName="superhero" required>
       </mat-form-field>
       <button mat-raised-button color="primary" type="submit" [disabled]="heroForm.invalid">Add</button>
     </form>
@@ -29,7 +29,7 @@
     <form [formGroup]="heroForm">
       <mat-form-field appearance="fill">
         <mat-label>Superhero</mat-label>
-        <input matInput formControlName="superhero" required>
+        <input appUpperCase matInput formControlName="superhero" required>
       </mat-form-field>
       <button mat-raised-button color="primary" [disabled]="heroForm.invalid" (click)="onSaveEdit()">Save</button>
       <button mat-raised-button color="warn" (click)="onCancelEdit()">Cancel</button>

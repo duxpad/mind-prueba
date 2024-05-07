@@ -17,6 +17,7 @@ import { AppComponent } from './app.component';
 import { DialogComponent } from './core/components/dialog/dialog.component';
 import { SuperHeroComponent } from './views/main-view/components/super-hero/super-hero.component';
 import { MainViewComponent } from './views/main-view/main-view.component';
+import { UpperCaseDirective } from './core/upper-case.directive';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { MainViewComponent } from './views/main-view/main-view.component';
     MainViewComponent,
     SuperHeroComponent,
     DialogComponent,
+    UpperCaseDirective,
   ],
   imports: [
     BrowserModule,
