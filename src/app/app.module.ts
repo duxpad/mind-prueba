@@ -15,9 +15,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DialogComponent } from './core/components/dialog/dialog.component';
+import { UpperCaseDirective } from './core/upper-case.directive';
 import { SuperHeroComponent } from './views/main-view/components/super-hero/super-hero.component';
 import { MainViewComponent } from './views/main-view/main-view.component';
-import { UpperCaseDirective } from './core/upper-case.directive';
 
 @NgModule({
   declarations: [

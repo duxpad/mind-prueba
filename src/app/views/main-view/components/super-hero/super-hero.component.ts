@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { DialogComponent } from '../../../../core/components/dialog/dialog.component';
 import { SuperHerosContentService } from '../../services/super-heros-content.service';
 import { IntHero } from './schemas/superhero.interface';
@@ -17,10 +19,13 @@ export class SuperHeroComponent implements OnInit {
     'Are you sure you want to delete this Superhero?';
   superHeroes: IntHero[] = [];
   currentPage: number = 1;
-  pageSize: number = 10;
   isEditing: boolean = false;
   showAddForm: boolean = false;
   heroForm: FormGroup;
+  displayedColumns: string[] = ['id', 'superhero', 'actions'];
+  dataSource = new MatTableDataSource(this.superHeroes);
+
+  @ViewChild('paginator') paginator!: MatPaginator;
 
   constructor(
     private superHeroesService: SuperHerosContentService,
@@ -45,6 +50,10 @@ export class SuperHeroComponent implements OnInit {
     this.initHeroesSubscription();
   }
 
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
   /***************/
   // SUBSCRIPTIONS
   /***************/
@@ -59,6 +68,7 @@ export class SuperHeroComponent implements OnInit {
   /***************/
   private loadSuperHeroes(): void {
     this.superHeroes = this.superHeroesService.getAllSuperHeroes();
+    this.dataSource = new MatTableDataSource(this.superHeroes);
   }
 
   /***************/
@@ -71,6 +81,8 @@ export class SuperHeroComponent implements OnInit {
         superhero: this.heroForm.value.superhero,
       };
       this.superHeroesService.createSuperHero(newHero);
+      this.dataSource.data = this.superHeroes;
+      this.paginator.lastPage();
       this.toggleAddForm();
     }
   }
@@ -81,13 +93,13 @@ export class SuperHeroComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result: any) => {
       if (result) {
         this.superHeroesService.deleteSuperHero(hero.id);
-        this.loadSuperHeroes();
+        this.dataSource.data = this.superHeroes;
       }
     });
   }
 
   onFilterHeroes(event: any) {
-    this.superHeroes = this.superHeroesService.filterSuperHeroes(
+    this.dataSource.data = this.superHeroesService.filterSuperHeroes(
       event?.target?.value
     );
   }
@@ -104,6 +116,7 @@ export class SuperHeroComponent implements OnInit {
         if (result) {
           this.superHeroesService.updateSuperHero(editedHero);
           this.isEditing = false;
+          this.dataSource.data = this.superHeroes;
         }
       });
     }
