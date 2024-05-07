@@ -1,0 +1,92 @@
+[
+  {
+    "id": "1",
+    "superhero": "Spider-Man",
+    "publisher": "Marvel",
+    "image": "https://example.com/spiderman.jpg"
+  },
+  {
+    "id": "2",
+    "superhero": "Batman",
+    "publisher": "DC Comics",
+    "image": "https://example.com/batman.jpg"
+  },
+  {
+    "id": "3",
+    "superhero": "Superman",
+    "publisher": "DC Comics",
+    "image": "https://example.com/superman.jpg"
+  },
+  {
+    "id": "4",
+    "superhero": "Iron Man",
+    "publisher": "Marvel",
+    "image": ""
+  },
+  {
+    "id": "5",
+    "superhero": "Wonder Woman",
+    "publisher": "DC Comics",
+    "image": ""
+  },
+  {
+    "id": "6",
+    "superhero": "Thor",
+    "publisher": "Marvel",
+    "image": ""
+  },
+  {
+    "id": "7",
+    "superhero": "Captain America",
+    "publisher": "Marvel",
+    "image": ""
+  },
+  {
+    "id": "8",
+    "superhero": "The Flash",
+    "publisher": "DC Comics",
+    "image": ""
+  },
+  {
+    "id": "9",
+    "superhero": "Hulk",
+    "publisher": "Marvel",
+    "image": ""
+  },
+  {
+    "id": "10",
+    "superhero": "Black Widow",
+    "publisher": "Marvel",
+    "image": ""
+  },
+  {
+    "id": "11",
+    "superhero": "Green Lantern",
+    "publisher": "DC Comics",
+    "image": ""
+  },
+  {
+    "id": "12",
+    "superhero": "Aquaman",
+    "publisher": "DC Comics",
+    "image": ""
+  },
+  {
+    "id": "13",
+    "superhero": "Black Panther",
+    "publisher": "Marvel",
+    "image": ""
+  },
+  {
+    "id": "14",
+    "superhero": "Captain Marvel",
+    "publisher": "Marvel",
+    "image": ""
+  },
+  {
+    "id": "15",
+    "superhero": "Doctor Strange",
+    "publisher": "Marvel",
+    "image": ""
+  }
+]
