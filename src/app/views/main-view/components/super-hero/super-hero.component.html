@@ -1,0 +1,67 @@
+<div class="container">
+  <mat-toolbar color="primary">Superheroes</mat-toolbar>
+
+  <div class="filter-container mt-3">
+    <mat-form-field appearance="fill">
+      <mat-label>Filter by name</mat-label>
+      <input matInput placeholder="Nombre del héroe" (keyup)="onFilterHeroes($event)">
+    </mat-form-field>
+  </div>
+
+  <!-- ADD FORM -->
+  <div class="button-container">
+    <button mat-raised-button color="primary" (click)="toggleAddForm()">Add Superhero</button>
+  </div>
+  <div *ngIf="showAddForm" class="form-container mt-3">
+    <h3>Add new Superhero</h3>
+    <form [formGroup]="heroForm" (ngSubmit)="onAddHero()">
+      <mat-form-field appearance="fill">
+        <mat-label>Superhero</mat-label>
+        <input matInput formControlName="superhero" required>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit" [disabled]="heroForm.invalid">Add</button>
+    </form>
+  </div>
+
+  <!-- EDIT FORM -->
+  <div *ngIf="isEditing" class="form-container">
+    <h3>Edit Superhero</h3>
+    <form [formGroup]="heroForm">
+      <mat-form-field appearance="fill">
+        <mat-label>Superhero</mat-label>
+        <input matInput formControlName="superhero" required>
+      </mat-form-field>
+      <button mat-raised-button color="primary" [disabled]="heroForm.invalid" (click)="onSaveEdit()">Save</button>
+      <button mat-raised-button color="warn" (click)="onCancelEdit()">Cancel</button>
+    </form>
+  </div>
+
+  <!-- TABLE -->
+  <mat-table [dataSource]="superHeroes" matSort class="mat-elevation-z8 mt-3">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+      <mat-cell *matCellDef="let hero">{{ hero.id }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="superhero">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Superhero</mat-header-cell>
+      <mat-cell *matCellDef="let hero">{{ hero.superhero }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+      <mat-cell *matCellDef="let hero">
+        <button mat-icon-button color="primary" (click)="onEditSuperhero(hero)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="onDeleteSuperHero(hero)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="['id', 'superhero', 'actions']"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: ['id', 'superhero', 'actions']"></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25]" (page)="onPageChange($event)"
+    showFirstLastButtons></mat-paginator>
+</div>
